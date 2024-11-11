@@ -11,19 +11,24 @@ extensions = {
     "ico": "images",
     "gif": "images",
     "svg": "images",
+    "jfif": "images",
     "sql": "sql",
     "exe": "programs",
     "msi": "programs",
     "pdf": "pdf",
+    "epub": "epub",
     "xlsx": "excel",
     "csv": "excel",
     "rar": "archive",
     "zip": "archive",
     "gz": "archive",
     "tar": "archive",
+    "7z": "archive",
     "docx": "word",
     "torrent": "torrent",
     "txt": "text",
+    "log": "text",
+    "md": "text",
     "ipynb": "python",
     "py": "python",
     "pptx": "powerpoint",
@@ -34,10 +39,12 @@ extensions = {
     "m3u8": "video",
     "webm": "video",
     "ts": "video",
+    "avi": "video",
     "json": "json",
     "css": "web",
     "js": "web",
     "html": "web",
+    "webp": "web",
     "apk": "apk",
     "sqlite3": "sqlite3",
 }
@@ -62,4 +69,8 @@ if __name__ == "__main__":
             dst = os.path.join(path, folder_name, basename)
             if verbose:
                 print(f"[*] Moving {file} to {dst}")
-            shutil.move(file, dst)
+            try:
+                shutil.move(file, dst)
+            except Exception as e:
+                print(f"[!] Error: {e}")
+                continue
